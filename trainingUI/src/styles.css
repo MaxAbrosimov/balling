@@ -1,0 +1,7 @@
+.App {
+    margin: auto;
+}
+
+.Main-Color {
+    background-image: linear-gradient(135deg, #1D1726 0%, #0C0601 100%)!important;
+}

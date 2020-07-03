@@ -1,0 +1,7 @@
+export const FETCH_PIE_DATA = "FETCH_PIE_DATA";
+export const FETCH_BAR_DATA = "FETCH_BAR_DATA";
+export const FETCH_LINE_DATA = "FETCH_LINE_DATA";
+
+export const PIE_DATA_LOADED = "PIE_DATA_LOADED";
+export const BAR_DATA_LOADED = "BAR_DATA_LOADED";
+export const LINE_DATA_LOADED = "LINE_DATA_LOADED";
