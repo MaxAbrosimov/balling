@@ -2,18 +2,16 @@ package com.balling.training.dto;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Data
-public class TrainingDto {
+public class ExerciseDto {
 
     private String id;
 
-    private String name;
+    private String trainingId;
 
-    private Long date;
+    private String type;
 
     private int total;
 
@@ -21,5 +19,4 @@ public class TrainingDto {
 
     private int fail;
 
-    private List<ExerciseDto> exercises;
 }
