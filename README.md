@@ -1,9 +1,9 @@
 # BALLING
+Its an app from ballers to ballers :)
 
 **Requirements:**
-- maven
-- cassandra
-
+- [maven](https://maven.apache.org/index.html)
+- cassandra (u can use [docker](https://hub.docker.com/_/cassandra) for it)
 
 
 **Run Eureka Server**

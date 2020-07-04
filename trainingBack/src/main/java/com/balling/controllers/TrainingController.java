@@ -1,4 +1,4 @@
-package com.balling.training;
+package com.balling.controllers;
 
 import com.balling.domain.Training;
 import com.balling.training.dto.TrainingDto;
