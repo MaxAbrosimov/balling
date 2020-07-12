@@ -11,6 +11,7 @@ import com.balling.training.repositories.ExerciseRepository;
 import com.balling.training.repositories.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,9 +53,11 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public TrainingDto saveOrUpdate(TrainingDto dto) {
         Training training = trainingRepository.save(trainingFromDto.convert(dto));
-        Iterable<Exercise> exercises = exerciseRepository.saveAll(exerciseFromDto.convertAll(dto.getExercises(), training.getId().toString()));
         TrainingDto result = trainingToDto.convert(training);
-        result.setExercises(exerciseToDto.convert(exercises));
+        if (!CollectionUtils.isEmpty(dto.getExercises())) {
+            Iterable<Exercise> exercises = exerciseRepository.saveAll(exerciseFromDto.convertAll(dto.getExercises(), training.getId().toString()));
+            result.setExercises(exerciseToDto.convert(exercises));
+        }
         return result;
     }
 
