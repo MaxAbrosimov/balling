@@ -6,6 +6,7 @@ import com.balling.training.converters.exercise.ExerciseToDto;
 import com.balling.training.converters.training.TrainingFromDto;
 import com.balling.domain.Training;
 import com.balling.training.converters.training.TrainingToDto;
+import com.balling.training.dto.ExerciseDto;
 import com.balling.training.dto.TrainingDto;
 import com.balling.training.repositories.ExerciseRepository;
 import com.balling.training.repositories.TrainingRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -41,13 +43,22 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public List<TrainingDto> listAll() {
         return StreamSupport.stream(trainingRepository.findAll().spliterator(), false)
-                .map(training -> trainingToDto.convert(training))
-                .collect(Collectors.toList());
+                .map(training -> {
+                    TrainingDto trainingDto = trainingToDto.convert(training);
+                    trainingDto.setExercises(getExercisesByTraining(training.getId()));
+                    return trainingDto;
+                }).collect(Collectors.toList());
     }
 
     @Override
-    public Training getById(UUID id) {
-        return trainingRepository.findById(id).orElse(null);
+    public TrainingDto getById(UUID id) {
+        Optional<Training> training = trainingRepository.findById(id);
+        if (training.isPresent()) {
+            TrainingDto trainingDto = trainingToDto.convert(training.get());
+            trainingDto.setExercises(getExercisesByTraining(training.get().getId()));
+            return trainingDto;
+        }
+        return null;
     }
 
     @Override
@@ -64,5 +75,9 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public void delete(UUID id) {
         trainingRepository.deleteById(id);
+    }
+
+    private List<ExerciseDto> getExercisesByTraining(UUID trainingId) {
+        return exerciseToDto.convert(exerciseRepository.findByKeyTrainingId(trainingId));
     }
 }

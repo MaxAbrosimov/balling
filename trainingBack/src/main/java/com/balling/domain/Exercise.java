@@ -1,16 +1,18 @@
 package com.balling.domain;
 
-import com.balling.primaryKeys.ExcersicePrimaryKey;
+import com.balling.primaryKeys.ExercisePrimaryKey;
 import lombok.Data;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
+
+import java.util.UUID;
 
 @Table("exercise")
 @Data
 public class Exercise {
 
     @PrimaryKey
-    private ExcersicePrimaryKey key;
+    private ExercisePrimaryKey key;
 
     private String type;
 
@@ -21,7 +23,8 @@ public class Exercise {
     private int fail;
 
     public Exercise() {
-        this.key = new ExcersicePrimaryKey();
+        ExercisePrimaryKey key = new ExercisePrimaryKey();
+        key.setId(UUID.randomUUID());
     }
 
 }

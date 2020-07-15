@@ -11,7 +11,7 @@ public interface TrainingService {
 
     List<TrainingDto> listAll();
 
-    Training getById(UUID id);
+    TrainingDto getById(UUID id);
 
     TrainingDto saveOrUpdate(TrainingDto trainingDto);
 

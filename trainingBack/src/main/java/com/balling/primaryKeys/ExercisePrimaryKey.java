@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Data
 @PrimaryKeyClass
-public class ExcersicePrimaryKey implements Serializable {
+public class ExercisePrimaryKey implements Serializable {
 
     @PrimaryKeyColumn(name = "training_id", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     @CassandraType(type = DataType.Name.UUID)
@@ -22,7 +22,7 @@ public class ExcersicePrimaryKey implements Serializable {
     @CassandraType(type = DataType.Name.UUID)
     private UUID id;
 
-    public ExcersicePrimaryKey() {
+    public ExercisePrimaryKey() {
         this.id = UUID.randomUUID();
     }
 }

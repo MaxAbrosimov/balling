@@ -1,4 +1,5 @@
 # Project exclude paths
+# Project exclude paths
 /trainingBack/target/
 /weather-api/target/
 /eureka-server/.gitignore
@@ -10,3 +11,5 @@
 /trainingUI/trainingUI.iml
 /weather-api/weather-api.iml
 
+/trainingUI/node_modules/
+/trainingUI/package-lock.json

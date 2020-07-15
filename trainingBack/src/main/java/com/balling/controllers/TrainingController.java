@@ -36,7 +36,7 @@ public class TrainingController {
 
     @GetMapping(value = "/{pid}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
-    public ResponseEntity<Training> load(@PathVariable String pid) {
+    public ResponseEntity<TrainingDto> load(@PathVariable String pid) {
         return new ResponseEntity<>(trainingService.getById(UUID.fromString(pid)), OK);
     }
 
